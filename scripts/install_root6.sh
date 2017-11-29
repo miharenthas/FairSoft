@@ -58,8 +58,17 @@ if [ "$platform" = "macosx" ]; then
     mysed 'minicern' 'minicern gfortran' $SIMPATH/tools/root/main/CMakeLists.txt
   fi
 else
-  _build_xrootd=yes
+  clang_version=$( clang --version | head -1 | awk '{ print $3 }' )
+  clang_major_version=${clang_version%%.*}
+  if [ $clang_major_version -ge 4 ]; then
+    # don't do anything
+    cd $SIMPATH/tools/root
+    _build_xrootd=no
+  else
+    _build_xrootd=yes
+  fi
 fi
+
 set +xv
 
 if [ "${_build_xrootd}" = "yes" ]; then

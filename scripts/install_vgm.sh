@@ -28,6 +28,9 @@ if (not_there VGM $checkfile);
 then
   cd $SIMPATH/transport/vgm
 
+  tainted_files=$( grep -l -- -std=c++11 $( find -name '*.cmake' ) )
+  if [ -n "$tainted_files" ]; then sed -i 's/-std=c++11/-std=c++14/g' $tainted_files; fi
+
   mkdir build_cmake
   cd build_cmake
 
@@ -40,6 +43,7 @@ then
         -DGeant4_DIR=$SIMPATH_INSTALL/lib/$GEANT4VERSIONp \
         -DROOT_DIR=$SIMPATH_INSTALL \
         -DWITH_TEST=OFF \
+        -DWITH_EXAMPLES=OFF \
         ..
 
   make install -j$number_of_processes

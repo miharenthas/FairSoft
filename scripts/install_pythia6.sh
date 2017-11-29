@@ -27,6 +27,7 @@ then
 
   cd $SIMPATH/generators/pythia6
   cp ../CMakeLists.txt_pythia6 CMakeLists.txt
+  
   mkdir build
   cd build
 

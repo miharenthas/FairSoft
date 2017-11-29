@@ -26,6 +26,9 @@ then
     fi
   fi
 
+  tainted_files=$( grep -l -- -std=c++11 $( find -name '*.cmake' ) )
+  if [ -n "$tainted_files" ]; then sed -i 's/-std=c++11/-std=c++14/g' $tainted_files; fi
+
   mkdir build
   cd build
   cmake -DCMAKE_INSTALL_PREFIX=$SIMPATH_INSTALL \
@@ -39,6 +42,8 @@ then
         -DGeant4_DIR=$SIMPATH_INSTALL \
         -DROOT_DIR=$SIMPATH_INSTALL \
         -DVGM_DIR=$SIMPATH_INSTALL/lib/$VGMDIR \
+        -DGeant4VMC_BUILD_EXAMPLES=OFF \
+        -DGeant4VMC_INSTALL_EXAMPLES=OFF \
         ..
 
   make install -j$number_of_processes

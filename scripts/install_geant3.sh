@@ -57,6 +57,9 @@ then
 
   mypatch ../Geant3_32bit.patch
   
+  tainted_files=$( grep -l -- -std=c++11 $( find -name 'FindROOT.cmake' ) )
+  if [ -n "$tainted_files" ]; then sed -i 's/-std=c++11/-std=c++14/g' $tainted_files; fi
+  
   mkdir build
   cd build
   cmake -DCMAKE_INSTALL_PREFIX=$SIMPATH_INSTALL \

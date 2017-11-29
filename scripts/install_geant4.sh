@@ -20,6 +20,9 @@ then
   fi
 fi
 
+tainted_files=$( grep -l -- -std=c++11 $( find -name '*.cmake' ) )
+if [ -n "$tainted_files" ]; then sed -i 's/-std=c++11/-std=c++14/g' $tainted_files; fi
+
 # Full output during compilation and linking to check for the
 # compile and link commands
 #export CPPVERBOSE=1
@@ -67,7 +70,7 @@ then
 
   if [ "$build_cpp11" = "yes" ];
   then
-    geant4_cpp="-DGEANT4_BUILD_CXXSTD=c++11"
+    geant4_cpp="-DGEANT4_BUILD_CXXSTD=c++14"
   else
     geant4_cpp=""
   fi

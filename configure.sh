@@ -176,11 +176,14 @@ source scripts/package_versions.sh
 create_installation_directories
 
 # Now start compilations with checks
+source scripts/checklib.sh
 
 ######################## CMake ################################
 # This is only for safety reasons. If we find a machine where
 # cmake is not installed, we install cmake and add the path
 # to the environment variable PATH
+
+checklib "cmake" "--"
 
 if [ "$check" = "1" ];
 then
@@ -189,12 +192,16 @@ fi
 
 ############ Google Test framework ###############################
 
+checklib "gtest" "--"
+
 if [ "$check" = "1" ];
 then
   source scripts/install_gtest.sh
 fi
 
 ############ GNU scientific library ###############################
+
+checklib "gsl" "--"
 
 if [ "$check" = "1" ];
 then
@@ -203,12 +210,16 @@ fi
 
 ############ ICU libraries ###############################
 
+checklib "icu" "--"
+
 if [ "$check" = "1" -a "$compiler" = "Clang" -a "$platform" = "linux" ];
 then
   source scripts/install_icu.sh
 fi
 
 ############ Boost libraries ###############################
+
+checklib "boost" "--"
 
 if [ "$check" = "1" ];
 then
@@ -217,12 +228,16 @@ fi
 
 ##################### Pythia 6 #############################################
 
+checklib "pythia" "Pythia" "6"
+
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_pythia6.sh
 fi
 
 ##################### HepMC ## #############################################
+
+checklib "HepMC" "--"
 
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
@@ -231,12 +246,16 @@ fi
 
 ##################### Pythia 8 #############################################
 
+checklib "pythia" "Pythaia" "8"
+
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_pythia8.sh
 fi
 
-##################### XercesC #############################################
+##################### Xerces-C #############################################
+
+checklib "xerces" "--"
 
 if [ "$build_python" = "yes" ];
 then
@@ -248,12 +267,16 @@ fi
 
 ############ Mesa libraries ###############################
 
+checklib "GLU" "GL/glu"
+
 if [ "$check" = "1" -a "$compiler" = "Clang" -a "$platform" = "linux" ];
 then
   source scripts/install_mesa.sh
 fi
 
 ##################### GEANT 4 #############################################
+
+checklib "geant" "--" "4"
 
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
@@ -269,12 +292,16 @@ fi
 
 ##################### ROOT #############################################
 
+checklib "root" "--"
+
 if [ "$check" = "1" ];
 then
   source scripts/install_root6.sh
 fi
 
 ##################### G4Py #############################################
+
+checklib "g4py" "--"
 
 if [ "$build_python" = "yes" ];
 then
@@ -286,12 +313,16 @@ fi
 
 ##################### Pluto #############################################
 
+checklib "pluto" "--"
+
 if [ "$check" = "1" -a "$onlyreco" = "0" -a "$pluto" = "1" ];
 then
      source scripts/install_pluto.sh
 fi
 
 ##################### Geant 3 VMC #############################################
+
+checklib "geant" "--" "3"
 
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
@@ -300,6 +331,8 @@ fi
 
 ##################### VGM #############################################
 
+checklib "vgm" "--"
+
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
     source scripts/install_vgm.sh
@@ -307,12 +340,16 @@ fi
 
 ##################### Geant 4 VMC #############################################
 
+checklib "geant-vmc" "--" "4"
+
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_geant4_vmc.sh
 fi
 
 ##################### Millepede #############################################
+
+checklib "millepede" "--"
 
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
@@ -328,12 +365,16 @@ fi
 
 ##################### ZeroMQ ##################################################
 
+checklib "zmq" "--"
+
 if [ "$check" = "1" ];
 then
   source scripts/install_zeromq.sh
 fi
 
 ##################### Protocoll Buffers #######################################
+
+checklib "protobuf" "google/protobuf"
 
 if [ "$check" = "1" ];
 then
@@ -342,6 +383,8 @@ fi
 
 ##################### FlatBuffers ##############################################
 
+checklib "flatbuffers" "--"
+
 if [ "$check" = "1" ];
 then
   source scripts/install_flatbuffers.sh
@@ -349,12 +392,16 @@ fi
 
 ##################### MessagePack ##############################################
 
+checklib "msgpack" "--"
+
 if [ "$check" = "1" ];
 then
   source scripts/install_msgpack.sh
 fi
 
 ##################### nanomsg ##################################################
+
+checklib "nanomsg" "--"
 
 if [ "$check" = "1" ];
 then
@@ -375,7 +422,7 @@ then
     else
       exit 0
     fi
-else
+elif [ $check -eq 1 ]; then
     echo "*** End installation of external packages with Errors***"  | tee -a $logfile
     exit 42
 fi

@@ -15,12 +15,21 @@ then
     mkdir build_g4py
     cd build_g4py
 
-    cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
-          -DXERCESC_ROOT_DIR=${SIMPATH_INSTALL}  \
-          -DBOOST_ROOT=${SIMPATH_INSTALL} \
-          -DBoost_NO_SYSTEM_PATHS=TRUE \
-          -DBoost_NO_BOOST_CMAKE=TRUE \
-          ../environments/g4py
+    . checklib.sh
+    checklib "xerces" --
+    have_sys_xerces=$check
+    checklib "boos" --
+    have_sys_boost=$check
+    
+    cmake_flags="-DCMAKE_BUILD_TYPE=$BUILD_TYPE"
+    if [ $have_sys_boost -eq 1 ]; then
+    	cmake_flags=$cmake_flags" -DBOOST_ROOT=${SIMPATH_INSTALL} -DBoost_NO_SYSTEM_PATHS=TRUE -DBoost_NO_BOOST_CMAKE=TRUE"
+    fi
+    if [ $have_sys_xerces -eq 1 ]; then
+    	cmake_flags=$cmake_flags" -DXERCESC_ROOT_DIR=${SIMPATH_INSTALL}"
+    fi
+
+    cmake $cmake_flags ../environments/g4py
 
     $MAKE_command -j$number_of_processes
     $MAKE_command install -j$number_of_processes

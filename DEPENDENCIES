@@ -64,7 +64,7 @@ yum install cmake gcc gcc-c++ gcc-gfortran make patch sed \
   libxml2-devel wget openssl-devel krb5-devel \
   automake autoconf libtool which
 
-Fedora22-25
+Fedora22-27
 
 dnf install cmake gcc gcc-c++ gcc-gfortran make patch sed \
   libX11-devel libXft-devel libXpm-devel libXext-devel \
@@ -72,4 +72,7 @@ dnf install cmake gcc gcc-c++ gcc-gfortran make patch sed \
   curl curl-devel bzip2 bzip2-devel gzip unzip tar expat-devel \
   subversion git flex bison imake redhat-lsb-core python-devel \
   libxml2-devel wget openssl-devel krb5-devel \
-  automake autoconf libtool which
+  automake autoconf libtool which cmake gtest-devel gsl-devel \
+  icu boost-devel pythia8-devel pluto-devel zeromq-devel \
+  protobuf-devel flatbuffers-devel msgpack-devel xerces-c-devel \
+  HepMC-devel clang-devel llvm-devel xrootd-devel
