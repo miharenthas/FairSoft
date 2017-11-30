@@ -261,10 +261,10 @@ EndIf()
 Include(CheckCXXCompilerFlag)
 
 #---Check for cxx11
-CHECK_CXX_COMPILER_FLAG("-std=c++11" HAS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++14" HAS_CXX11)
 If(HAS_CXX11)
-  Message(STATUS "Current compiler does suppport -std=c++11 option.")
-  Set(FAIRSOFT_CXX_FLAGS "${FAIRSOFT_CXX_FLAGS} -std=c++11")
+  Message(STATUS "Current compiler does suppport -std=c++14 option.")
+  Set(FAIRSOFT_CXX_FLAGS "${FAIRSOFT_CXX_FLAGS} -std=c++14")
 Else()
   Message(STATUS "Current compiler does not suppport -std=c++11 option.")
 EndIf()
