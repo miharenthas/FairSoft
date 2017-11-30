@@ -15,10 +15,10 @@ then
     mkdir build_g4py
     cd build_g4py
 
-    . checklib.sh
+    . $SIMPATH/scripts/checklib.sh
     checklib "xerces" --
     have_sys_xerces=$check
-    checklib "boos" --
+    checklib "boost" --
     have_sys_boost=$check
     
     cmake_flags="-DCMAKE_BUILD_TYPE=$BUILD_TYPE"

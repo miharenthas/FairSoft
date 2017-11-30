@@ -246,7 +246,7 @@ fi
 
 ##################### Pythia 8 #############################################
 
-checklib "pythia" "Pythaia" "8"
+checklib "pythia" "Pythia" "8"
 
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
