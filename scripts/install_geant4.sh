@@ -68,7 +68,7 @@ then
     install_data=""
   fi
 
-  if [ "$build_cpp11" = "yes" ];
+  if [ "$build_cpp14" = "yes" ];
   then
     geant4_cpp="-DGEANT4_BUILD_CXXSTD=c++14"
   else

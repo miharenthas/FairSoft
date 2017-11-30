@@ -475,7 +475,7 @@ export CXXFLAGS="${CFLAGS}"
 if [ $hascxx11 ];
 then
   export CXXFLAGS="${CXXFLAGS} -std=c++14"
-  export build_cpp11=yes
+  export build_cpp14=yes
 else
   if [ "$install_alfasoft" = "yes" ];
   then

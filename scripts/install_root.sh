@@ -4,7 +4,7 @@
 # If it is not there get the source tar file from the
 # root web server and unpack it
 
-if [ "$build_cpp11" = "yes" ];
+if [ "$build_cpp14" = "yes" ];
 then
   CXXFLAGS_BAK=$CXXFLAGS
   CXXFLAGS="$CFLAGS"
@@ -239,7 +239,7 @@ else
   fi
 fi
 
-if [ "$build_cpp11" = "yes" ];
+if [ "$build_cpp14" = "yes" ];
 then
   CXXFLAGS=$CXXFLAGS_BAK
   export CXXFLAGS
