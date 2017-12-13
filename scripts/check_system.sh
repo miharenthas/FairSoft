@@ -454,11 +454,12 @@ then
   echo "There have been problems found. Please check the output above."
   echo ""
   cd $SIMPATH
-  rm -rf test
+  rm -rf test/
   exit
 fi
 
 hascxx11=$(grep HasCxx11 $SIMPATH/test/configure | cut -f2 -d:)
+hascxx14=$(grep HasCxx14 $SIMPATH/test/configure | cut -f2 -d:)
 haslibcxx=$(grep HasLibCxx $SIMPATH/test/configure | cut -f2 -d:)
 _hascurl=$(grep HasCurl $SIMPATH/test/configure | cut -f2 -d:)
 isMacOsx108=$(grep isMacOsx108 $SIMPATH/test/configure | cut -f2 -d:)
@@ -472,10 +473,13 @@ fi
 
 export CXXFLAGS="${CFLAGS}"
 
-if [ $hascxx11 ];
+if [ $hascxx14 ];
 then
   export CXXFLAGS="${CXXFLAGS} -std=c++14"
   export build_cpp14=yes
+elif [ $hascxx11 ]; then
+  export CXXFLAGS="${CXXFLAGS} -std=c++11"
+  export build_cpp11=yes
 else
   if [ "$install_alfasoft" = "yes" ];
   then
