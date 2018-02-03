@@ -58,7 +58,7 @@ then
   mypatch ../Geant3_32bit.patch
   
   if [ "$build_cpp14" = "yes" ]; then
-	  tainted_files=$( grep -l -- -std=c++11 $( find -name '*.cmake' ) )
+	  tainted_files=$( grep -l -- -std=c++11 $( find . -name '*.cmake' ) )
 	  if [ -n "$tainted_files" ]; then sed -i 's/-std=c++11/-std=c++14/g' $tainted_files; fi
   fi
   

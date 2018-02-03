@@ -12,7 +12,7 @@ checklib(){
 	else incname=$1; fi; shift
 	if [ -n $1 ]; then libvers=$1; fi
 
-	libs=$( ls /lib{,64}/*$libname*$libvers* 2>/dev/null )
+	libs=$( ls {,/usr{,/local}}/lib{,64}/*$libname*$libvers* 2>/dev/null )
 	incs=$( ls /usr{,/local}/include/*$incname* 2>/dev/null )
 
 	if [ -n "$libs" -a -n "$incs" ]; then check=0
