@@ -540,8 +540,75 @@ clean_nanomsg() {
   fi
 }
 
+
+clean_msgpack (){
+echo "Remove temporary files from package Msgpack"
+if [ -e $SIMPATH/basics/msgpack/build ]; then
+  cd $SIMPATH/basics/msgpack/build
+  make clean
+fi
+
+if [ "$rm_installed_files" = "true" ]; then
+  echo "Remove installed files from package Msgpack"
+  rm -f $SIMPATH_INSTALL/lib/libmsgpackc.*
+fi
+}
+clean_fairlogger() {
+  echo "Remove temporary files from package fairlogger"
+  if [ -e $SIMPATH/basics/FairLogger ]; then
+    rm -rf $SIMPATH/basics/FairLogger
+  fi
+
+  if [ "$rm_installed_files" = "true" ]; then
+    echo "Remove installed files from package fairlogger"
+    if [ -e $SIMPATH_INSTALL/bin/loggerTest ]; then
+      rm -f $SIMPATH_INSTALL/bin/loggerTest
+      rm -rf $SIMPATH_INSTALL/lib/fairlogger
+      rm -rf $SIMPATH_INSTALL/lib/cmake/FairLogger*
+      rm -rf $SIMPATH_INSTALL/include/fairlogger
+    fi
+  fi
+}
+
+clean_fairmq() {
+  echo "Remove temporary files from package fairmq"
+  if [ -e $SIMPATH/basics/FairMQ ]; then
+    rm -rf $SIMPATH/basics/FairMQ
+  fi
+
+  if [ "$rm_installed_files" = "true" ]; then
+    echo "Remove installed files from package fairmq"
+    if [ -e $SIMPATH_INSTALL/bin/bsampler ]; then
+      rm -f $SIMPATH_INSTALL/bin/bsampler
+      rm -rf $SIMPATH_INSTALL/lib/fairmq
+      rm -rf $SIMPATH_INSTALL/lib/cmake/FairMQ*
+      rm -rf $SIMPATH_INSTALL/include/fairmq
+      rm -rf $SIMPATH_INSTALL/share/fairmq
+    fi
+  fi
+}
+
+clean_DDS() {
+   echo "Remove temporary files from package DDS"
+   if [ -e $SIMPATH/basics/DDS ]; then
+     rm -rf $SIMPATH/basics/DDS
+   fi
+   if [ "$rm_installed_files" = "true" ]; then
+     echo "Remove installed files from package DDS"
+     if [ -e $SIMPATH_INSTALL/bin/dds-server]; then
+       rm -f $SIMPATH_INSTALL/bin/dds*
+       rm -f $SIMPATH_INSTALL/lib/libdds*
+       rm -f $SIMPATH_INSTALL/include/dds*
+       rm -f $SIMPATH_INSTALL/DDS/DDS_env.sh
+       rm -rf $SIMPATH_INSTALL/DDS
+       rm -rf $SIMPATH_INSTALL/plugins
+     fi
+   fi
+
+}
+
 clean_all() {
-  valid_packages="cmake gtest gsl icu boost pythia6 hepmc pythia8 xercesc mesa geant4 xrootd root g4py pluto geant3 vgm geant4_vmc millipede zeromq protobuf nanomsg"
+  valid_packages="cmake gtest gsl icu boost pythia6 hepmc pythia8 xercesc mesa geant4 xrootd root g4py pluto geant3 vgm geant4_vmc millipede zeromq protobuf nanomsg fairlogger DDS fairmq"
 
   for pack in $valid_packages
   do
@@ -550,7 +617,7 @@ clean_all() {
 }
 
 check_package_exist() {
-  valid_packages="cmake gtest gsl icu boost pythia6 hepmc pythia8 xercesc mesa geant4 xrootd root g4py pluto geant3 vgm geant4_vmc millipede zeromq protobuf nanomsg"
+  valid_packages="cmake gtest gsl icu boost pythia6 hepmc pythia8 xercesc mesa geant4 xrootd root g4py pluto geant3 vgm geant4_vmc millipede zeromq protobuf nanomsg fairlogger DDS fairmq"
 
   if [ "$1" = "all" ]; then
     return

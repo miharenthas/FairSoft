@@ -240,6 +240,14 @@ function check_variables {
   else
     check_yes_no install_sim
   fi
+  if [ "$build_MQOnly" = "" ]; then
+    echo "*** It is not defined in the input file if only the FairMQ toolchain should be installed."
+    echo "*** Please add the missing definition in the input file."
+    echo "*** e.g.: build_MQOnly=[no/yes]"
+    exit 1
+  else
+    check_yes_no build_MQOnly
+  fi
   if [ "$SIMPATH_INSTALL" = "" ]; then
     echo "*** No installation directory is defined in the input file."
     echo "*** Please add the missing definition in the input file."
@@ -335,6 +343,7 @@ function generate_config_cache {
   echo compiler=$compiler > $cache_file
   echo debug=$debug >> $cache_file
   echo optimize=$optimize >> $cache_file
+  echo build_MQOnly=$build_MQOnly >> $cache_file
   echo geant4_download_install_data_automatic=$geant4_download_install_data_automatic >> $cache_file
   echo geant4_install_data_from_dir=$geant4_install_data_from_dir >> $cache_file
   echo build_root6=$build_root6 >> $cache_file

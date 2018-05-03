@@ -94,6 +94,12 @@ else
   echo "or with one parameter which defines an input file with the needed parameters."
   exit 1
 fi
+if [ "$build_MQOnly" = "yes" ]
+then
+    mqonly=1
+else
+    mqonly=0
+fi
 
 if [ "$install_sim" = "yes" ]
 then
@@ -104,17 +110,22 @@ then
    onlyreco=1
    export Fortran_Needed=FALSE
 fi
-
-if [ "$build_root6" = "yes" ]
+if [ "$build_MQOnly" = "no" ]
 then
-  pluto=0
-  export Root_Version=6
-elif [ "$build_root6" = "no" ]
-then
-  pluto=1
-  export Root_Version=5
+     if [ "$build_root6" = "yes" ]
+     then
+       pluto=0
+       export Root_Version=6
+     elif [ "$build_root6" = "no" ]
+     then
+       pluto=1
+       export Root_Version=5
+     fi
+ elif [ "$build_MQOnly" = "yes" ];
+ then
+    pluto=0
+    export Root_Version=0
 fi
-
 
 if [ "$installation_type" = "grid" ];
 then
@@ -269,7 +280,7 @@ fi
 
 checklib "GLU" "GL/glu"
 
-if [ "$check" = "1" -a "$compiler" = "Clang" -a "$platform" = "linux" ];
+if [ "$check" = "1" -a "$compiler" = "Clang" -a "$platform" = "linux" -a "$mqonly" = "0" ];
 then
   source scripts/install_mesa.sh
 fi
@@ -294,7 +305,7 @@ fi
 
 checklib "root" "--"
 
-if [ "$check" = "1" ];
+if [ "$check" = "1" -a "$mqonly" = "0" ];
 then
   source scripts/install_root6.sh
 fi
@@ -305,7 +316,7 @@ checklib "g4py" "--"
 
 if [ "$build_python" = "yes" ];
 then
-  if [ "$check" = "1" -a "$onlyreco" = "0" ];
+  if [ "$check" = "1" -a "$onlyreco" = "0" -a "$mqonly" = "0" ];
   then
     source scripts/install_g4py.sh
   fi
@@ -315,7 +326,7 @@ fi
 
 checklib "pluto" "--"
 
-if [ "$check" = "1" -a "$onlyreco" = "0" -a "$pluto" = "1" ];
+if [ "$check" = "1" -a "$onlyreco" = "0" -a "$pluto" = "1"  -a "$mqonly" = "0" ];
 then
      source scripts/install_pluto.sh
 fi
@@ -324,7 +335,7 @@ fi
 
 checklib "geant" "--" "3"
 
-if [ "$check" = "1" -a "$onlyreco" = "0" ];
+if [ "$check" = "1" -a "$onlyreco" = "0" -a "$mqonly" = "0" ];
 then
   source scripts/install_geant3.sh
 fi
@@ -406,6 +417,27 @@ checklib "nanomsg" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_nanomsg.sh
+fi
+
+##################### DDS ###############################################
+
+if [ "$check" = "1" ];
+then
+  source scripts/install_DDS.sh
+fi
+
+##################### FairLogger ###############################################
+
+if [ "$check" = "1" ];
+then
+  source scripts/install_fairlogger.sh
+fi
+
+##################### FairMQ ###############################################
+
+if [ "$check" = "1" ];
+then
+  source scripts/install_fairmq.sh
 fi
 
 if [ "$check" = "1" ];
