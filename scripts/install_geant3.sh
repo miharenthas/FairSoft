@@ -23,7 +23,7 @@ then
 #  FFLAGS_BAK=$FFLAGS
 #  export CXXFLAGS="-g -O0"
 #  export CFLAGS="-g -O0"
-#  export FFLAGS="-g -O0"
+  export FFLAGS="-std=legacy"
 
   mkdir -p $install_prefix/include/TGeant3
 
@@ -41,7 +41,7 @@ then
   # patches needed to compile gcalor and for changes in geane
   mypatch ../geant3_geane.patch | tee -a $logfile
   mypatch ../Geant3_CMake.patch | tee -a $logfile
-
+  mypatch ../geant3_TGeant3_root6_14.patch | tee -a $logfile
   mypatch ../geant3_structs.patch | tee -a $logfile
 
   if [ ! -f data/xsneut.dat ];

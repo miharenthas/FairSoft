@@ -219,7 +219,7 @@ fi
 
 ############ Boost libraries ###############################
 
-checklib "boost" "--" "1.64"
+checklib "boost" "--"
 
 if [ "$check" = "1" ];
 then
