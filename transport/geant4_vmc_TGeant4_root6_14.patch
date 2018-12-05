@@ -1,0 +1,17 @@
+--- source/run/include/TGeant4.h_old	2018-07-27 18:15:39.568033535 +0200
++++ source/run/include/TGeant4.h	2018-07-27 18:17:44.155605578 +0200
+@@ -271,9 +271,14 @@
+         // dynamic properties
+     virtual void    TrackPosition(TLorentzVector& position) const;
+     virtual void    TrackPosition(Double_t& x, Double_t& y, Double_t& z) const;
++    virtual void    TrackPosition(Float_t& x, Float_t& y, Float_t& z) const {
++        TrackPosition( (Double_t&)x, (Double_t&)y, (Double_t&)z ); };
+     virtual void    TrackMomentum(TLorentzVector& momentum) const;
+     virtual void    TrackMomentum(Double_t& px, Double_t& py, Double_t&pz,
+                                   Double_t& etot) const;
++    virtual void    TrackMomentum(Float_t& px, Float_t& py, Float_t&pz,
++                                  Float_t& etot) const {
++        TrackMomentum( (Double_t&)px, (Double_t&)py, (Double_t&)pz, (Double_t&)etot); };
+     virtual Double_t TrackStep() const;
+     virtual Double_t TrackLength() const; 
+     virtual Double_t TrackTime() const;

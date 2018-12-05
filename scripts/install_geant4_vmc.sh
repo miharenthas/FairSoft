@@ -26,6 +26,9 @@ then
     fi
   fi
 
+  #apply the patch for ROOt 6.14/00+ compatibility
+  mypatch ../geant4_vmc_TGeant4_root6_14.patch
+  
   if [ "$build_cpp14" = "yes" ]; then
 	  tainted_files=$( grep -l -- -std=c++11 $( find . -name '*.cmake' ) )
 	  if [ -n "$tainted_files" ]; then sed -i 's/-std=c++11/-std=c++14/g' $tainted_files; fi
