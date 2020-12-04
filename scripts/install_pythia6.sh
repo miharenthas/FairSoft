@@ -31,7 +31,7 @@ then
   #correct a stupid error in a source file
   if [ -z "$( grep 'extern' pythia6_common_address.c )" ]; then 
     sed -i '51,72s/^/extern /g' pythia6_common_address.c
-    sed -i "68d" pythia6_common_address.c
+    sed -i '68s/^/\/\//g; 92/^/\/\//; 92/^/\/\//g' pythia6_common_address.c
   fi
 
   mkdir build
