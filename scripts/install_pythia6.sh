@@ -29,9 +29,9 @@ then
   cp ../CMakeLists.txt_pythia6 CMakeLists.txt
 
   #correct a stupid error in a source file
-  sed -i "d68" pythia6_common_address.c
   if [ -z "$( grep 'extern' pythia6_common_address.c )" ]; then 
-    sed -i '51,71s/^/extern /g' pythia6_common_address.c
+    sed -i '51,72s/^/extern /g' pythia6_common_address.c
+    sed -i "68d" pythia6_common_address.c
   fi
 
   mkdir build
