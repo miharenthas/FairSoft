@@ -188,6 +188,7 @@ checklib "cmake" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_cmake.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ############ Google Test framework ###############################
@@ -197,6 +198,7 @@ checklib "gtest" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_gtest.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ############ GNU scientific library ###############################
@@ -206,6 +208,7 @@ checklib "gsl" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_gsl.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ############ ICU libraries ###############################
@@ -215,6 +218,7 @@ checklib "icu" "--"
 if [ "$check" = "1" -a "$compiler" = "Clang" -a "$platform" = "linux" ];
 then
   source scripts/install_icu.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ############ Boost libraries ###############################
@@ -224,6 +228,7 @@ checklib "boost" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_boost.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Pythia 6 #############################################
@@ -233,6 +238,7 @@ checklib "pythia" "Pythia" "6"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_pythia6.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### HepMC ## #############################################
@@ -242,6 +248,7 @@ checklib "HepMC" "--"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_hepmc.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Pythia 8 #############################################
@@ -251,6 +258,7 @@ checklib "pythia" "Pythia" "8"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_pythia8.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Xerces-C #############################################
@@ -262,6 +270,7 @@ then
   if [ "$check" = "1" -a "$onlyreco" = "0" ];
   then
     source scripts/install_xercesc.sh
+  if [ "$check" = "0" ]; then exit 1; fi
   fi
 fi
 
@@ -272,6 +281,7 @@ checklib "GLU" "GL/glu"
 if [ "$check" = "1" -a "$compiler" = "Clang" -a "$platform" = "linux" ];
 then
   source scripts/install_mesa.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### GEANT 4 #############################################
@@ -281,6 +291,7 @@ checklib "geant" "--" "4"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_geant4.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ###################### GEANT 4 Data ########################################
@@ -288,6 +299,7 @@ fi
 if [ "$check" = "1" -a "$geant4_install_data_from_dir" = "yes" -a "$onlyreco" = "0" ];
 then
   source scripts/install_geant4_data.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### ROOT #############################################
@@ -297,6 +309,7 @@ checklib "root" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_root6.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### G4Py #############################################
@@ -308,6 +321,7 @@ then
   if [ "$check" = "1" -a "$onlyreco" = "0" ];
   then
     source scripts/install_g4py.sh
+    if [ "$check" = "0" ]; then exit 1; fi
   fi
 fi
 
@@ -318,6 +332,7 @@ checklib "pluto" "--"
 if [ "$check" = "1" -a "$onlyreco" = "0" -a "$pluto" = "1" ];
 then
      source scripts/install_pluto.sh
+     if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Geant 3 VMC #############################################
@@ -327,6 +342,7 @@ checklib "geant" "--" "3"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_geant3.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### VGM #############################################
@@ -336,6 +352,7 @@ checklib "vgm" "--"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
     source scripts/install_vgm.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Geant 4 VMC #############################################
@@ -345,6 +362,7 @@ checklib "geant-vmc" "--" "4"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_geant4_vmc.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Millepede #############################################
@@ -354,6 +372,7 @@ checklib "millepede" "--"
 if [ "$check" = "1" -a "$onlyreco" = "0" ];
 then
   source scripts/install_millepede.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### LibSodium ##################################################
@@ -361,6 +380,7 @@ fi
 #if [ "$check" = "1" ];
 #then
 #  source scripts/install_sodium.sh
+#  if [ "$check" = "0" ]; then exit 1; fi
 #fi
 
 ##################### ZeroMQ ##################################################
@@ -370,6 +390,7 @@ checklib "zmq" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_zeromq.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### Protocoll Buffers #######################################
@@ -379,6 +400,7 @@ checklib "protobuf" "google/protobuf"
 if [ "$check" = "1" ];
 then
   source scripts/install_protobuf.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### FlatBuffers ##############################################
@@ -388,6 +410,7 @@ checklib "flatbuffers" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_flatbuffers.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### MessagePack ##############################################
@@ -397,6 +420,7 @@ checklib "msgpack" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_msgpack.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 ##################### nanomsg ##################################################
@@ -406,6 +430,7 @@ checklib "nanomsg" "--"
 if [ "$check" = "1" ];
 then
   source scripts/install_nanomsg.sh
+  if [ "$check" = "0" ]; then exit 1; fi
 fi
 
 if [ "$check" = "1" ];

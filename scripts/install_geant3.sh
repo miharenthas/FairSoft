@@ -23,7 +23,7 @@ then
 #  FFLAGS_BAK=$FFLAGS
 #  export CXXFLAGS="-g -O0"
 #  export CFLAGS="-g -O0"
-  export FFLAGS="-std=legacy"
+  export FFLAGS="-std=legacy -fallow-invalid-boz"
 
   mkdir -p $install_prefix/include/TGeant3
 

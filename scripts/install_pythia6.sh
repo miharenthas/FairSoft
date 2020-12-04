@@ -27,7 +27,12 @@ then
 
   cd $SIMPATH/generators/pythia6
   cp ../CMakeLists.txt_pythia6 CMakeLists.txt
-  
+
+  #correct a stupid error in a source file
+  if [ -z "$( grep 'extern' pythia6_common_address.c )" ]; then 
+    sed -i '51,72s/^/extern /g' pythia6_common_address.c
+  fi
+
   mkdir build
   cd build
 
